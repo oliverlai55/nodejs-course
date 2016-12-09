@@ -5,9 +5,33 @@ const _ = require('lodash');
 const yargs = require('yargs');
 const notes = require('./notes.js');
 
+const titleOptions = {
+  describe: "Title of note",
+  demand: true,
+  alias: 't'
+};
+
 const argv = yargs.argv;
 
-var command = argv._[0];
+var command = yargs
+  .command('add', 'Add a new note', {
+    title: titleOptions,
+    body: {
+      describe: "Body of Note",
+      demand: true,
+      alias: 'b'
+    }
+  })
+  .command('list', 'List all notes')
+  .command('read', 'Read a note', {
+    title: titleOptions
+  })
+  .command('remove', 'Remove a note', {
+    title: titleOptions,
+
+  })
+  .help()
+  .argv;
 
 console.log(`Command: `, command);
 console.log('Process', process.argv);
@@ -23,14 +47,14 @@ if (command === 'add') {
   }
 
 } else if (command === 'list') {
-  notes.getAll();
+  var allNotes = notes.getAll();
+  console.log(`Printing ${allNotes.length} note(s).`);
+  allNotes.forEach((note) => note.logNote(note));
 } else if (command === 'read') {
   var note = notes.getNote(argv.title);
   if (note) {
-    console.log("Note Found");
     notes.logNote(note);
   } else {
-    console.log('note not found');
   }
 } else if (command = 'remove') {
   var noteRemoved = notes.removeNote(argv.title);
