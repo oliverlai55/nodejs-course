@@ -1,5 +1,6 @@
 /notes-node/node_modules
 /weather-app/node_modules
+/node-web-server/node_modules
 bundle.js
 npm-debug.log
 
