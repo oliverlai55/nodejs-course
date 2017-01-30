@@ -86,7 +86,7 @@ describe('GET /todos/:id', () => {
       .get(`/todos/${todos[0]._id.toHexString()}`)
       .expect(200)
       .expect((res) => {
-        expect(res.body.todo.text + '1').toBe(todos[0].text);
+        expect(res.body.todo.text).toBe(todos[0].text);
       })
       .end(done);
   });
@@ -100,10 +100,11 @@ describe('GET /todos/:id', () => {
       .end(done);
   });
 
-  it('should return 404 for non-object ids', (done) = {
+  it('should return 404 for non-object ids', (done) => {
     request(app)
       .get('/todos/123abc')
       .expect(404)
       .end(done);
   });
+
 });
