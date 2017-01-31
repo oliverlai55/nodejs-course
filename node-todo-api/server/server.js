@@ -34,7 +34,7 @@ app.get('/todos', (req, res) => {
   });
 });
 
- 
+
 // GET /todos/id
 app.get('/todos/:id', (req, res) => {
   var id = req.params.id;
@@ -64,6 +64,29 @@ app.get('/todos/:id', (req, res) => {
 
   //if there is todo, then send it back
 });
+
+
+// DELETE
+app.delete('/todos/:id', (req, res) => {
+// get the ID
+  var deleteID = req.params.id;
+
+  if (!ObjectID.isValid(deleteID)) {
+    return res.status(404).send();
+  }
+
+  Todo.findByIdAndRemove(deleteID).then((todo) => {
+    if (!todo) {
+      return res.status(404).send();
+    }
+
+    res.send({todo});
+  }).catch((e) => {
+    res.status(400).send();
+  })
+});
+
+
 
 app.listen(port, () => {
   console.log(`Started on port ${port}`);
