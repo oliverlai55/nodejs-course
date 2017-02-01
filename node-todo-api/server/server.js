@@ -1,3 +1,4 @@
+const _ = require('lodash');
 var express = require('express');
 var bodyParser = require('body-parser');
 var {ObjectID} = require('mongodb');
@@ -35,7 +36,7 @@ app.get('/todos', (req, res) => {
 });
 
 
-// GET /todos/id
+// ======= GET /todos/id =======
 app.get('/todos/:id', (req, res) => {
   var id = req.params.id;
   //valid id using isValid
@@ -66,7 +67,7 @@ app.get('/todos/:id', (req, res) => {
 });
 
 
-// DELETE
+// =====  DELETE =====
 app.delete('/todos/:id', (req, res) => {
 // get the ID
   var deleteID = req.params.id;
@@ -86,7 +87,9 @@ app.delete('/todos/:id', (req, res) => {
   })
 });
 
-
+app.patch(`/todos/:id`, (req, res) => {
+  var id = req.params.id;
+});
 
 app.listen(port, () => {
   console.log(`Started on port ${port}`);
