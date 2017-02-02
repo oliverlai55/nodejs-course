@@ -119,7 +119,7 @@ describe('DELETE /todos/:id', () => {
     request(app)
       .delete(`/todos/${hexId}`)
       .expect(200)
-      .expect(() => {
+      .expect((res) => {
         expect(res.body.todo._id).toBe(hexId);
       })
       .end((err, res) => {
@@ -129,11 +129,11 @@ describe('DELETE /todos/:id', () => {
 
         Todo.findById(hexId).then((todo) => {
           expect(todo).toNotExist();
-          done;
+          done();
         }).catch((e) => done(e));
         //query database using findById toNotExist
         // expencting (null).toNotExist();
-      })
+      });
   });
 
   it('should return 404 if todo not found', (done) => {
