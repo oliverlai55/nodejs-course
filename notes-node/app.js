@@ -1,6 +1,7 @@
 console.log("Starting app.js");
 
 const fs = require('fs');
+// File System module
 const _ = require('lodash');
 const yargs = require('yargs');
 const notes = require('./notes.js');
@@ -75,5 +76,6 @@ if (command === 'add') {
 // console.log(res);
 
 // var user = os.userInfo();
-//
+// use it to customize user name in greeting
+
 // fs.appendFile('greetings.txt', `Hello ${user.username}! You are ${notes.age}`);
