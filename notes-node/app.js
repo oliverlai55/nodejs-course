@@ -76,6 +76,6 @@ if (command === 'add') {
 // console.log(res);
 
 // var user = os.userInfo();
-// use it to customize user name in greeting
+// use it to customize user name in greeting 
 
 // fs.appendFile('greetings.txt', `Hello ${user.username}! You are ${notes.age}`);
