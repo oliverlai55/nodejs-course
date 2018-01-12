@@ -35,12 +35,21 @@ const convertCurrency = (from, to, amount) => {
 		});
 };
 
+const convertCurrencyAlt = async (from, to, amount) => {
+	const countries = await getCountries(to);
+	const rate = await getExchangeRate(from, to);
+	const exchangedAmount = amount * rate;
+
+	return `${amount} ${from} is worth ${exchangedAmount} ${to}. ${to} can be used in the following countries: ${countries.join(
+		', ',
+	)}`;
+};
 // Create convertCurrencyAlt as async function
 // Get countries and rate using await and our two function
 // Calculate exchangeAmount
 // Return status string
 
-convertCurrency('CAD', 'USD', 100).then(status => {
+convertCurrencyAlt('CAD', 'USD', 100).then(status => {
 	console.log(status);
 });
 
