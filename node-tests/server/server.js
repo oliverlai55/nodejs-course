@@ -8,5 +8,20 @@ app.get('/', (req, res) => {
 	});
 });
 
+// GET /users
+// Give users a name property and age property
+app.get('/users', (req, res) => {
+	res.send([
+		{
+			name: 'Oliver Lai',
+			age: 28,
+		},
+		{
+			name: 'Thomas Chen',
+			age: 29,
+		},
+	]);
+});
+
 app.listen(3000);
 module.exports.app = app;
