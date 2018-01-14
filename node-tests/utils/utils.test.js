@@ -2,47 +2,51 @@ const expect = require('expect');
 
 const utils = require('./utils');
 
-it('should add two numbers', () => {
-	var res = utils.add(33, 11);
+describe('Utils', () => {
+	describe('#add', () => {
+		it('should add two numbers', () => {
+			var res = utils.add(33, 11);
 
-	expect(res)
-		.toBe(44)
-		.toBeA('number');
+			expect(res)
+				.toBe(44)
+				.toBeA('number');
 
-	if (res !== 44) {
-		throw new Error(`Expected 44, but got ${res}`);
-	}
-});
-
-it('should async add two numbers', done => {
-	utils.asyncAdd(4, 3, sum => {
-		expect(sum)
-			.toBe(7)
-			.toBeA('number');
-		done();
+			if (res !== 44) {
+				throw new Error(`Expected 44, but got ${res}`);
+			}
+		});
 	});
-});
 
-// BDD Beahvior drivein devlopemtn
+	it('should async add two numbers', done => {
+		utils.asyncAdd(4, 3, sum => {
+			expect(sum)
+				.toBe(7)
+				.toBeA('number');
+			done();
+		});
+	});
 
-it('should square 2 numbers', () => {
-	var res2 = utils.square(3);
+	// BDD Beahvior drivein devlopemtn
 
-	expect(res2)
-		.toBe(9)
-		.toBeA('number');
+	it('should square 2 numbers', () => {
+		var res2 = utils.square(3);
 
-	if (res2 !== 9) {
-		throw new Error(`Expected 9, but got ${res2}`);
-	}
-});
-
-it('should async square 2 numbers', done => {
-	utils.asyncSquare(2, sum => {
-		expect(sum)
-			.toBe(4)
+		expect(res2)
+			.toBe(9)
 			.toBeA('number');
-		done();
+
+		if (res2 !== 9) {
+			throw new Error(`Expected 9, but got ${res2}`);
+		}
+	});
+
+	it('should async square 2 numbers', done => {
+		utils.asyncSquare(2, sum => {
+			expect(sum)
+				.toBe(4)
+				.toBeA('number');
+			done();
+		});
 	});
 });
 
