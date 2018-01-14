@@ -13,6 +13,16 @@ it('should add two numbers', () => {
 		throw new Error(`Expected 44, but got ${res}`);
 	}
 });
+
+it('should async add two numbers', done => {
+	utils.asyncAdd(4, 3, sum => {
+		expect(sum)
+			.toBe(7)
+			.toBeA('number');
+		done();
+	});
+});
+
 // BDD Beahvior drivein devlopemtn
 
 it('should square 2 numbers', () => {
@@ -25,6 +35,15 @@ it('should square 2 numbers', () => {
 	if (res2 !== 9) {
 		throw new Error(`Expected 9, but got ${res2}`);
 	}
+});
+
+it('should async square 2 numbers', done => {
+	utils.asyncSquare(2, sum => {
+		expect(sum)
+			.toBe(4)
+			.toBeA('number');
+		done();
+	});
 });
 
 // should verify first and last names are set
